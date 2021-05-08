@@ -62,9 +62,11 @@ LPINPUT = ctypes.POINTER(INPUT)
 
 
 def __randomDelay__():
-    sleepTime = float(Config.config["OPTIONS"].get("keyDuration", 0.5)) + \
-        ((2 * random.random()) - 1) * \
-        float(Config.config["OPTIONS"].get("keyDurationRandommnes", 0))
+    keyDuration = float(Config.config["OPTIONS"].get("keyDuration", 0.5))
+    keyRandomness = ((2 * random.random()) - 1) * float(Config.config["OPTIONS"].get("keyDurationRandomnes", 0))
+
+    sleepTime = keyDuration + keyRandomness
+
     time.sleep(sleepTime)
 
 
