@@ -14,7 +14,8 @@ state = False
 
 def __performFishOutput():
     for i in range(int(Config.config["INPUTS"].get("fishDetectAmmount", 1))):
-        Keystroke.keyCombination(
+        print(i, Config.config["INPUTS"].get("onFishDetect", ""))
+        Keystroke.anyKey(
             Config.config["INPUTS"].get("onFishDetect", ""))
 
 
@@ -30,10 +31,10 @@ def __performFishingStart():
     if (now - lastFreeFish) >= int(Config.config["INPUTS"].get("fishingFreeTimeout", 10000)):
         logging.debug("Starting free fishing")
         lastFreeFish = now
-        #Keystroke.keyCombination(Config.config["INPUTS"].get("initiateFishingFree", ""))
+        Keystroke.anyKey(Config.config["INPUTS"].get("initiateFishingFree", ""))
     else:
         logging.debug("Starting normal fishing")
-        #Keystroke.keyCombination(Config.config["INPUTS"].get("initiateFishingNormal", ""))
+        Keystroke.anyKey(Config.config["INPUTS"].get("initiateFishingNormal", ""))
 
 
 def resetFishingState():
@@ -41,6 +42,8 @@ def resetFishingState():
     global lastFreeFish
     global lastFishingStart
     global state
+
+    time.sleep(1)   # if initiated via hotkeys, let user depress meta keys before input
 
     lastDetect = time.time()
     lastFreeFish = 0
@@ -80,11 +83,11 @@ def initiateFishing():
         __performFishingStart()
 
     elif (state == "catching") and \
-            ((now - lastDetect) >= (int(Config.config["INPUTS"].get("catchDuration", 6)) + 2)):            # catch duration + padding
+            ((now - lastDetect) >= (int(Config.config["INPUTS"].get("catchDuration", 6)) + 2)): # catch duration + padding
         logging.debug("fishing detection timeout")
         state = "idle"
 
     elif (state != "idle") and \
-            ((now - lastFishingStart) >= int(Config.config["INPUTS"].get("fishingTimeout", 30))):           # max fishing duration
+            ((now - lastFishingStart) >= int(Config.config["INPUTS"].get("fishingTimeout", 30))): # max fishing duration
         logging.debug("fishing start timeout")
         state = "idle"
