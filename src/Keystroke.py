@@ -68,31 +68,31 @@ def __randomDelay__():
     time.sleep(sleepTime)
 
 
-def pressKey(hexKeyCode):
+def pressKey(hexKeyCode: int):
     #logging.debug(f"Keydown {hexKeyCode}")
     x = INPUT(type=INPUT_KEYBOARD,
               ki=KEYBDINPUT(wVk=hexKeyCode))
     user32.SendInput(1, ctypes.byref(x), ctypes.sizeof(x))
 
 
-def releaseKey(hexKeyCode):
+def releaseKey(hexKeyCode: int):
     #logging.debug(f"Keyup {hexKeyCode}")
     x = INPUT(type=INPUT_KEYBOARD,
               ki=KEYBDINPUT(wVk=hexKeyCode, dwFlags=KEYEVENTF_KEYUP))
     user32.SendInput(1, ctypes.byref(x), ctypes.sizeof(x))
 
 
-def keyByHex(hexKeyCode):
+def keyByHex(hexKeyCode: int):
     pressKey(hexKeyCode)
     __randomDelay__()
     releaseKey(hexKeyCode)
 
 
-def keyByName(name):
-    keyByHex(KeyCodeMap.toKeyCode(name))
+def keyByName(name: str):
+    keyByHex(KeyCodeMap.toKeyCode(name.lower()))
 
 
-def keyCombination(combo):
+def keyCombination(combo: str):
     keys = combo.split("+")
     keys = [KeyCodeMap.toKeyCode(key) for key in keys]
 
