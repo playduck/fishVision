@@ -153,8 +153,6 @@ def capture(stop_event):
             cv2.imshow("cv2screen", screen)
 
         Output.initiateFishing() 
-        # TODO find a better place for this?
-        # maybe handle the timeout here and not as a state of the function
 
         cv2.waitKey(10)
 

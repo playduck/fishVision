@@ -107,7 +107,7 @@ def keyCombination(combo: str):
         releaseKey(key)
 
 def anyKey(k: any):
-    logging.debug(f"pressing {k}")
+    logging.debug(f"Pressing {k}")
     if type(k) is int:
         keyByHex(k)
     elif "+" in k:

@@ -7,5 +7,7 @@ def initilize():
     updated = False
     lockedWindow = False
 
+    logging.debug("Config loaded")
+
 def __isTrue(value):
     return bool(value == "1")

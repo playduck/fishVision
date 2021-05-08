@@ -60,7 +60,7 @@ def onFishDetect():
 
     # catch duration
     if state == "fishing" and ((now - lastDetect) >= int(Config.config["INPUTS"].get("catchDuration", 6))):
-        logging.debug("catching fish")
+        logging.debug("Catching fish")
         lastDetect = now
         state = "catching"
         __performFishOutput()
@@ -76,17 +76,17 @@ def initiateFishing():
 
     # if we're idle then restart fishing
     if state == "idle":
-        logging.debug("starting fishing")
+        logging.debug("Starting fishing")
         state = "fishing"
 
         __performFishingStart()
 
     elif (state == "catching") and \
             ((now - lastDetect) >= (int(Config.config["INPUTS"].get("catchDuration", 6)) + 2)): # catch duration + padding
-        logging.debug("fishing detection timeout")
+        logging.debug("Fishing detection timeout")
         state = "idle"
 
     elif (state != "idle") and \
             ((now - lastFishingStart) >= int(Config.config["INPUTS"].get("fishingTimeout", 30))): # max fishing duration
-        logging.debug("fishing start timeout")
+        logging.debug("Fishing start timeout")
         state = "idle"

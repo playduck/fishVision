@@ -26,7 +26,7 @@ def setupHotkeys():
 
 
 def handleHotkey(type):
-    logging.debug(f"hotkey {type}")
+    logging.debug(f"Hotkey {type}")
     
     cbs = callbacks.get(type, lambda: None)
     for cb in cbs:
