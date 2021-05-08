@@ -105,3 +105,13 @@ def keyCombination(combo: str):
 
     for key in keys:
         releaseKey(key)
+
+def anyKey(k: any):
+    logging.debug(f"pressing {k}")
+    if type(k) is int:
+        keyByHex(k)
+    elif "+" in k:
+        keyCombination(k)
+    else:
+        keyByName(k)
+
