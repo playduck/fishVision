@@ -14,7 +14,6 @@ state = False
 
 def __performFishOutput():
     for i in range(int(Config.config["INPUTS"].get("fishDetectAmmount", 1))):
-        print(i, Config.config["INPUTS"].get("onFishDetect", ""))
         Keystroke.anyKey(
             Config.config["INPUTS"].get("onFishDetect", ""))
 
