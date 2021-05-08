@@ -17,7 +17,7 @@ import KeyCodeMap
 import Hotkeys
 
 import Capture
-
+import Output
 
 threads = list()
 iniReaderPill = threading.Event()
@@ -82,6 +82,7 @@ if __name__ == "__main__":
     Hotkeys.registerCallback("stop", stopCapture)
     Hotkeys.registerCallback("lockwindow", toggleLockedWindow)
     Hotkeys.registerCallback("exit", exitHandler)
+    Hotkeys.registerCallback("reset", Output.resetFishingState)
 
     while not mainPill.is_set():
         if Config.updated == True:
