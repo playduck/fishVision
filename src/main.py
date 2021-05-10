@@ -7,7 +7,6 @@ import time
 from signal import signal, SIGINT
 import sys
 
-
 import Config
 import InIReader
 
@@ -62,11 +61,12 @@ def toggleLockedWindow():
 
 
 if __name__ == "__main__":
+    format = "%(asctime)s: %(message)s"
+    logging.basicConfig(format=format, level=logging.DEBUG, datefmt="%H-%M-%S")
+
     # init global vars
     Config.initilize()
 
-    format = "%(asctime)s: %(message)s"
-    logging.basicConfig(format=format, level=logging.DEBUG, datefmt="%H-%M-%S")
 
     # exit event handlers
     atexit.register(exitHandler)

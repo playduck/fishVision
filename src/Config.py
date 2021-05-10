@@ -1,3 +1,5 @@
+import logging
+
 def initilize():
     global config
     global updated
