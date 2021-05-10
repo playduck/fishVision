@@ -14,9 +14,6 @@ NUMBLOBS = 1
 THRESHHOLD = 0.08
 MAXLEN = 10
 
-capture_width = 512
-capture_height = 512
-
 process_width = 512
 process_height = 512
 
@@ -30,12 +27,14 @@ def capture(stop_event):
 
     Output.resetFishingState()
 
-    # TODO replace these with ringbuffers
     delta_graph = collections.deque(maxlen=MAXLEN)
     fish_graph = collections.deque(maxlen=MAXLEN)
 
     screen_width = int(Config.config["OPTIONS"].get("screenWidth", 3840))
     screen_height = int(Config.config["OPTIONS"].get("screenHeight", 2160))
+
+    capture_width = int(Config.config["OPTIONS"].get("captureWidth", 512))
+    capture_height = int(Config.config["OPTIONS"].get("captureHeight", 512))
 
     showBlueMask = Config.__isTrue(
         Config.config["OPTIONS"].get("showBlueMask", "0"))
