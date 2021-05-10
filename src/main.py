@@ -85,6 +85,8 @@ if __name__ == "__main__":
     Hotkeys.registerCallback("reset", Output.resetFishingState)
 
     while not mainPill.is_set():
+        time.sleep(1)
+
         if Config.updated == True:
 
             Hotkeys.setupHotkeys()
@@ -95,4 +97,3 @@ if __name__ == "__main__":
                 startCapture()
 
             Config.updated = False
-        time.sleep(1)
