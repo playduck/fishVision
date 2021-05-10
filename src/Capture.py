@@ -153,7 +153,7 @@ def capture(stop_event):
 
         Output.initiateFishing() 
 
-        cv2.waitKey(10)
+        cv2.waitKey(int(Config.config["OPTIONS"].get("cv2Wait", 10)))
 
     cv2.destroyAllWindows()
 
