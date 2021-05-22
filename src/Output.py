@@ -63,6 +63,7 @@ def onFishDetect():
         logging.debug("Catching fish")
         lastDetect = now
         state = "catching"
+        time.sleep(float(Config.config["INPUTS"].get("fishDetectWait", 1)))
         __performFishOutput()
 
 
